@@ -1,0 +1,120 @@
+.channels-page {
+    padding: var(--spacing-xl);
+    padding-bottom: 100px;
+}
+
+.channels-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.category-filter {
+    display: flex;
+    gap: var(--spacing-sm);
+    overflow-x: auto;
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.category-filter::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+.filter-chip {
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-chip.active {
+    background: var(--color-taqwa-teal);
+    color: white;
+    border-color: var(--color-taqwa-teal);
+}
+
+.channels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.channel-card {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    background: var(--color-surface);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.channel-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-gold);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.channel-icon {
+    font-size: 2.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.channel-info h3 {
+    margin: 0 0 5px 0;
+    color: var(--color-text-primary);
+}
+
+.channel-info p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+}
+
+.external-link-icon {
+    margin-left: auto;
+    /* Push to right just in case */
+    color: var(--color-taqwa-teal);
+    font-size: 1.2rem;
+}
+
+.community-invite {
+    margin-top: var(--spacing-2xl);
+    background: linear-gradient(135deg, #5865F2, #4752C4);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    color: white;
+}
+
+.join-discord-btn {
+    background: white;
+    color: #5865F2;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    margin-top: var(--spacing-md);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.join-discord-btn:hover {
+    transform: scale(1.05);
+}

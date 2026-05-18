@@ -1,0 +1,102 @@
+.hasanat-countdown-widget {
+    position: fixed;
+    bottom: calc(20px + env(safe-area-inset-bottom));
+    right: 20px;
+    left: auto;
+    /* Remove full width */
+    width: auto;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 50px;
+    /* Pill shape */
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 1000;
+    /* Ensure on top but small */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.5s ease-out;
+}
+
+.next-prayer-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.next-prayer-info .label {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+}
+
+.next-prayer-info .timer {
+    font-family: monospace;
+    font-size: 1.2rem;
+    color: var(--color-gold);
+    font-weight: bold;
+}
+
+.multiplier-badge {
+    background: linear-gradient(135deg, #10b981, #059669);
+    padding: 5px 12px;
+    border-radius: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.multiplier-badge.x700 {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+}
+
+.multiplier-badge.pulse {
+    transform: scale(1.2);
+}
+
+.quran-verse-ticker {
+    display: none;
+    /* Temporarily hide to fix the 'thick bar' issue */
+    top: auto;
+    bottom: -20px;
+    left: 10px;
+    right: 10px;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.8);
+    white-space: nowrap;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.ticker-content {
+    display: inline-block;
+    animation: scroll-left 20s linear infinite;
+    padding-left: 100%;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
