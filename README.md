@@ -22,6 +22,10 @@ The name "الوصلة" means "The Connection" — representing the spiritual co
 
 ---
 
+> **📌 Project Status:** This project was originally deployed with a Railway backend (free tier), which has since expired. The **frontend runs fully locally** — just `npm install && npm run dev`. Some features that depended on the hosted backend (e.g., group chat, cloud sync) require re-deploying the backend or running it locally. All core features (prayer times, Quran, tracking, Hadith) work offline.
+
+---
+
 ## ✨ Features
 
 - 🕌 **Accurate Prayer Times** — Hijri date integration with `adhan` library for precise calculations
