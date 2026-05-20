@@ -19,11 +19,41 @@ const io = socketIo(server, {
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Connection
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/al-wusla';
-mongoose.connect(MONGODB_URI)
-    .then(() => console.log('✅ MongoDB Connected'))
-    .catch(err => console.error('❌ MongoDB Connection Error:', err));
+// MongoDB Connection — Smart fallback
+async function connectDB() {
+    const MONGODB_URI = process.env.MONGODB_URI;
+
+    // Try Atlas/external URI first
+    if (MONGODB_URI && MONGODB_URI.includes('mongodb')) {
+        try {
+            await mongoose.connect(MONGODB_URI);
+            console.log('✅ MongoDB Connected (Atlas/External)');
+            return;
+        } catch (err) {
+            console.warn('⚠️  Atlas connection failed, falling back to in-memory DB...');
+        }
+    }
+
+    // Fallback: in-memory MongoDB (no setup required)
+    try {
+        const { MongoMemoryServer } = require('mongodb-memory-server');
+        const mongod = await MongoMemoryServer.create();
+        const uri = mongod.getUri();
+        await mongoose.connect(uri);
+        console.log('✅ MongoDB Connected (In-Memory — data resets on restart)');
+    } catch (memErr) {
+        // Final fallback: local MongoDB
+        try {
+            await mongoose.connect('mongodb://localhost:27017/al-wusla');
+            console.log('✅ MongoDB Connected (Local)');
+        } catch (localErr) {
+            console.error('❌ All MongoDB connections failed. Some features will not work.');
+            console.error('   Install mongodb-memory-server: npm install mongodb-memory-server');
+        }
+    }
+}
+
+connectDB();
 
 // Import Routes
 const authRoutes = require('./routes/auth');

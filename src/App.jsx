@@ -128,8 +128,12 @@ function App() {
   useEffect(() => {
     console.log('⚔️ GuardMaster: Initializing guards...');
 
-    // Start competition pulse (auto-refresh every 15 seconds)
-    const stopPulse = GuardMaster.startCompetitionPulse(fetchLeaderboard, 15000);
+    // Only start competition pulse if user is authenticated
+    const token = localStorage.getItem('token');
+    let stopPulse = () => {};
+    if (token) {
+      stopPulse = GuardMaster.startCompetitionPulse(fetchLeaderboard, 15000);
+    }
 
     // Track this session
     GuardMaster.trackSession();
